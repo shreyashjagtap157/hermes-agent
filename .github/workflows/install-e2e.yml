@@ -58,6 +58,10 @@ jobs:
   # by both route matrices, so the two routes cover the same set.
   pick-releases:
     name: Pick release tags
+    # This E2E matrix is the canonical upstream release gate, not a fork check.
+    # Forks may not have the historical release tags this job requires; because
+    # update and installer depend on this job, they skip automatically as well.
+    if: github.repository == 'NousResearch/hermes-agent'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
